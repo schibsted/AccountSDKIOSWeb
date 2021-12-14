@@ -56,6 +56,17 @@ public final class SimplifiedLoginManager {
 }
 
 extension SimplifiedLoginManager {
+    
+    // TODO: THIS IS JUST FOR TESTING.
+    public func storeUserInSimplifiedLoginKeychain(user:User, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let tokens = user.tokens else {
+            completion(.failure(NSError(domain: "UserTokens is nil", code: 1, userInfo: [:])))
+            return
+        }
+        let sessionToStore = UserSession(clientId: user.client.configuration.clientId, userTokens: tokens, updatedAt: Date())
+        keychainSessionStorage?.store(sessionToStore, completion: completion)
+    }
+    
     /**
      Prepere and configure Simplified Login View Controller which should be shown modaly
 
