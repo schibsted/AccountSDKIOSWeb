@@ -239,7 +239,8 @@ public struct SimplifiedLoginViewControllerRepresentable: UIViewControllerRepres
         let userTokens = UserTokens(accessToken: "accessToken", refreshToken: "refreshToken", idToken: "idToken", idTokenClaims: idTokenClaims)
         let user = User(client: Client(configuration: clientConfig, httpClient: nil), tokens: userTokens)
         let fetcher = SimplifiedLoginFetcher(user: user)
-        let s = SimplifiedLoginUIFactory.buildViewController(client: client,assertionFetcher: fetcher, userContext: userContext, userProfileResponse: userProfileResponse, clientName: clientName, withMFA: .password, loginHint: nil, extraScopeValues: [], withSSO: true, completion: completion) as! UINavigationController
+        let context = ASWebAuthSessionContextProvider()
+        let s = SimplifiedLoginUIFactory.buildViewController(client: client, contextProvider: context ,assertionFetcher: fetcher, userContext: userContext, userProfileResponse: userProfileResponse, clientName: clientName, withMFA: .password, loginHint: nil, extraScopeValues: [], withSSO: true, completion: completion) as! UINavigationController
         
         return s
     }

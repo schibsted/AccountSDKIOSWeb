@@ -1,4 +1,5 @@
 import UIKit
+import AuthenticationServices
 
 struct SimplifiedLoginUIFactory {
 
@@ -32,6 +33,7 @@ struct SimplifiedLoginUIFactory {
     
     @available(iOS 13.0, *)
     static func buildViewController(client: Client,
+                                    contextProvider: ASWebAuthenticationPresentationContextProviding,
                                     assertionFetcher: SimplifiedLoginFetching,
                                     userContext: UserContextFromTokenResponse,
                                     userProfileResponse: UserProfileResponse,
@@ -58,7 +60,50 @@ struct SimplifiedLoginUIFactory {
             viewModel.asWebAuthenticationSession?.start()
         }
         
-        return commonSetup(completion: completion, client: client, assertionFetcher: assertionFetcher, viewModel: viewModel)
+        return commonSetupIOS13(contextProvider: contextProvider, completion: completion, client: client, assertionFetcher: assertionFetcher, viewModel: viewModel)
+    }
+    
+    @available(iOS 13.0, *)
+    private static func commonSetupIOS13(contextProvider: ASWebAuthenticationPresentationContextProviding, completion: @escaping LoginResultHandler, client: Client, assertionFetcher: SimplifiedLoginFetching,  viewModel: SimplifiedLoginViewModel) -> UIViewController {
+        let s = SimplifiedLoginViewController(viewModel: viewModel )
+        let nc = UINavigationController()
+        nc.pushViewController(s, animated: false)
+        
+        let url = URL(string: viewModel.localizationModel.privacyPolicyURL)!
+        let webVC = WebViewController()
+        
+        viewModel.onClickedContinueWithoutLogin = {
+            nc.dismiss(animated: true, completion: nil)
+        }
+        
+        viewModel.onClickedPrivacyPolicy = {
+            webVC.loadURL(url)
+            nc.pushViewController(webVC, animated: true)
+        }
+        
+        viewModel.onClickedContinueAsUser = {
+            assertionFetcher.fetchAssertion { result in
+                switch result {
+                case .success(let assertion):
+                    DispatchQueue.main.async {
+                        let session = client.createWebAuthenticationSession(withMFA: nil, loginHint: nil, assertion: assertion.assertion, extraScopeValues: [], completion: completion)
+                        viewModel.asWebAuthenticationSession = session
+                        
+                        if #available(iOS 13.0, *) {
+                            session.presentationContextProvider = contextProvider //TODO: Perhaps should be passed in
+                            session.prefersEphemeralWebBrowserSession = true
+                        }
+                        
+                        session.start()
+                    }
+                case .failure(let error):
+                    SchibstedAccountLogger.instance.error("Failed to fetch assertion on Simplified login flow: \(error)")
+                    completion(.failure(LoginError.unexpectedError(message: "Failed to obtain Assertion")))
+                }
+            }
+        }
+        
+        return nc
     }
     
     private static func commonSetup(completion: @escaping LoginResultHandler, client: Client, assertionFetcher: SimplifiedLoginFetching,  viewModel: SimplifiedLoginViewModel) -> UIViewController {

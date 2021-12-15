@@ -1,4 +1,5 @@
 import UIKit
+import AuthenticationServices
 
 public final class SimplifiedLoginManager {
     public enum SimplifiedLoginError: Error {
@@ -19,6 +20,8 @@ public final class SimplifiedLoginManager {
     let completion: LoginResultHandler
     var withSSO: Bool = true
     
+    
+    
     @available(iOS, obsoleted: 13, message: "This function should not be used in iOS version 13 and above")
     public init(accessGroup: String,
                 client: Client,
@@ -37,6 +40,7 @@ public final class SimplifiedLoginManager {
     
     @available(iOS 13.0, *)
     public init(accessGroup: String,
+                contextProperty: ASWebAuthenticationPresentationContextProviding,
                 client: Client,
                 env: ClientConfiguration.Environment, // TODO: Currently used to decide language.
                 withMFA: MFAType? = nil,
@@ -52,6 +56,17 @@ public final class SimplifiedLoginManager {
         self.extraScopeValues = extraScopeValues
         self.completion = completion
         self.withSSO = withSSO
+        self.myContextProperty = contextProperty
+    }
+    
+    
+    private var myContextProperty: Any? = nil
+    @available(iOS 13.0, *)
+    fileprivate var contextProperty: ASWebAuthenticationPresentationContextProviding {
+        if myContextProperty == nil {
+            myContextProperty = ASWebAuthSessionContextProvider()
+        }
+        return myContextProperty as! ASWebAuthSessionContextProvider
     }
 }
 
@@ -67,13 +82,80 @@ extension SimplifiedLoginManager {
         keychainSessionStorage?.store(sessionToStore, completion: completion)
     }
     
+//    /**
+//     Prepere and configure Simplified Login View Controller which should be shown modaly
+//
+//     - parameter clientName: optional client name visible in footer view of Simplified Login. If not provided CFBundleDisplayName is used by default
+//     - parameter completion: callback that receives the UIViewController for Simplified Login or an error in case of failure
+//     */
+//    public func getSimplifiedLogin(_ clientName: String? = nil, completion: @escaping (Result<UIViewController, Error>) -> Void) {
+//        guard let latestUserSession = self.keychainSessionStorage?.getLatestSession() else {
+//            completion(.failure(SimplifiedLoginError.noLoggedInSessionInSharedKeychain))
+//            return
+//        }
+//        guard let clientName = (clientName != nil) ? clientName! : Bundle.applicationName() else {
+//            SchibstedAccountLogger.instance.error("Please configure application display name or pass visibleClientName parameter")
+//            completion(.failure(SimplifiedLoginError.noClientNameFound))
+//            return
+//        }
+//
+//        let user = User(client: client, tokens: latestUserSession.userTokens)
+//        let fetcher = SimplifiedLoginFetcher(user: user)
+//        self.fetcher = fetcher
+//
+//        self.fetcher?.fetchData() { result in
+//            switch result {
+//            case .success(let fetchedData):
+//                DispatchQueue.main.async {
+//                    let simplifiedLoginViewController = self.makeViewController(clientName, assertionFetcher: fetcher, simplifiedLoginData: fetchedData)
+//                    completion(.success(simplifiedLoginViewController))
+//                }
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
+//    }
+//
+//    func makeViewController(_ clientName: String, assertionFetcher: SimplifiedLoginFetching, simplifiedLoginData: SimplifiedLoginFetchedData) -> UIViewController {
+//        let simplifiedLoginViewController: UIViewController
+//        if #available(iOS 13.0, *) {
+//            simplifiedLoginViewController = SimplifiedLoginUIFactory.buildViewController(client: self.client,
+//                                                                                         assertionFetcher: assertionFetcher,
+//                                                                                         userContext: simplifiedLoginData.context,
+//                                                                                         userProfileResponse: simplifiedLoginData.profile,
+//                                                                                         clientName: clientName,
+//                                                                                         withMFA: self.withMFA,
+//                                                                                         loginHint: self.loginHint,
+//                                                                                         extraScopeValues: self.extraScopeValues,
+//                                                                                         withSSO: self.withSSO,
+//                                                                                         completion: self.completion)
+//        } else {
+//            simplifiedLoginViewController = SimplifiedLoginUIFactory.buildViewController(client: self.client,
+//                                                                                         assertionFetcher: assertionFetcher,
+//                                                                                         userContext: simplifiedLoginData.context,
+//                                                                                         userProfileResponse: simplifiedLoginData.profile,
+//                                                                                         clientName: clientName,
+//                                                                                         withMFA: self.withMFA,
+//                                                                                         loginHint: self.loginHint,
+//                                                                                         extraScopeValues: self.extraScopeValues,
+//                                                                                         completion: self.completion)
+//        }
+//        if self.isPad {
+//            simplifiedLoginViewController.modalPresentationStyle = .formSheet
+//            simplifiedLoginViewController.preferredContentSize = .init(width: 450, height: 424)
+//        }
+//
+//        return simplifiedLoginViewController
+//    }
+    
     /**
      Prepere and configure Simplified Login View Controller which should be shown modaly
 
      - parameter clientName: optional client name visible in footer view of Simplified Login. If not provided CFBundleDisplayName is used by default
      - parameter completion: callback that receives the UIViewController for Simplified Login or an error in case of failure
      */
-    public func getSimplifiedLogin(_ clientName: String? = nil, completion: @escaping (Result<UIViewController, Error>) -> Void) {
+    @available(iOS 13.0, *)
+    public func getSimplifiedLoginIOS13(_ clientName: String? = nil, completion: @escaping (Result<UIViewController, Error>) -> Void) {
         guard let latestUserSession = self.keychainSessionStorage?.getLatestSession() else {
             completion(.failure(SimplifiedLoginError.noLoggedInSessionInSharedKeychain))
             return
@@ -92,7 +174,7 @@ extension SimplifiedLoginManager {
             switch result {
             case .success(let fetchedData):
                 DispatchQueue.main.async {
-                    let simplifiedLoginViewController = self.makeViewController(clientName, assertionFetcher: fetcher, simplifiedLoginData: fetchedData)
+                    let simplifiedLoginViewController = self.makeViewControllerIOS13(clientName, assertionFetcher: fetcher, simplifiedLoginData: fetchedData)
                     completion(.success(simplifiedLoginViewController))
                 }
             case .failure(let error):
@@ -101,10 +183,12 @@ extension SimplifiedLoginManager {
         }
     }
     
-    func makeViewController(_ clientName: String, assertionFetcher: SimplifiedLoginFetching, simplifiedLoginData: SimplifiedLoginFetchedData) -> UIViewController {
+    @available(iOS 13.0, *)
+    func makeViewControllerIOS13(_ clientName: String, assertionFetcher: SimplifiedLoginFetching, simplifiedLoginData: SimplifiedLoginFetchedData) -> UIViewController {
         let simplifiedLoginViewController: UIViewController
         if #available(iOS 13.0, *) {
             simplifiedLoginViewController = SimplifiedLoginUIFactory.buildViewController(client: self.client,
+                                                                                         contextProvider: self.contextProperty,
                                                                                          assertionFetcher: assertionFetcher,
                                                                                          userContext: simplifiedLoginData.context,
                                                                                          userProfileResponse: simplifiedLoginData.profile,
