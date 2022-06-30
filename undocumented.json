@@ -1,0 +1,306 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Client/Client+AppTransfer.swift",
+      "line": 10,
+      "symbol": "Client.AppTransfer",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Client/Client.swift",
+      "line": 9,
+      "symbol": "LoginResultHandler",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Client/Client.swift",
+      "line": 40,
+      "symbol": "ASWebAuthSessionContextProvider.presentationAnchor(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Client/Client.swift",
+      "line": 108,
+      "symbol": "Client.init(configuration:appIdentifierPrefix:sessionStorageConfig:tracker:httpClient:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Client/ClientConfiguration.swift",
+      "line": 8,
+      "symbol": "ClientConfiguration",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/API/SchibstedAccountAPIResponses.swift",
+      "line": 8,
+      "symbol": "UserProfileResponse",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/API/SchibstedAccountAPIResponses.swift",
+      "line": 141,
+      "symbol": "Identifier",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/API/SchibstedAccountAPIResponses.swift",
+      "line": 149,
+      "symbol": "Email",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/API/SchibstedAccountAPIResponses.swift",
+      "line": 160,
+      "symbol": "PhoneNumber",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/API/SchibstedAccountAPIResponses.swift",
+      "line": 171,
+      "symbol": "Name",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/API/SchibstedAccountAPIResponses.swift",
+      "line": 177,
+      "symbol": "Account",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/API/SchibstedAccountAPIResponses.swift",
+      "line": 184,
+      "symbol": "Address",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Errors/HTTPError.swift",
+      "line": 8,
+      "symbol": "HTTPError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Errors/IdTokenValidationError.swift",
+      "line": 8,
+      "symbol": "IdTokenValidationError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Errors/KeychainStorageError.swift",
+      "line": 21,
+      "symbol": "KeychainStorageError",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Errors/LoginError.swift",
+      "line": 8,
+      "symbol": "OAuthError",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Errors/LoginError.swift",
+      "line": 23,
+      "symbol": "LoginError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Errors/LoginStateError.swift",
+      "line": 8,
+      "symbol": "LoginStateError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Errors/RefreshTokenError.swift",
+      "line": 8,
+      "symbol": "RefreshTokenError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Errors/SignatureValidationError.swift",
+      "line": 8,
+      "symbol": "SignatureValidationError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Extensions/Bundle+AccountSDK.swift",
+      "line": 10,
+      "symbol": "Bundle.accountSDK(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Extensions/Bundle+AccountSDK.swift",
+      "line": 28,
+      "symbol": "Bundle.applicationName()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Extensions/Result+VoidSuccess.swift",
+      "line": 9,
+      "symbol": "Result.success()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Extensions/UIWindow+VisibleVC.swift",
+      "line": 9,
+      "symbol": "UIWindow.visibleViewController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Extensions/UIWindow+VisibleVC.swift",
+      "line": 13,
+      "symbol": "UIWindow.visibleViewController(from:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/HTTP/HTTPClient.swift",
+      "line": 8,
+      "symbol": "HTTPResultHandler",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/HTTP/HTTPClient.swift",
+      "line": 10,
+      "symbol": "HTTPClient",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/HTTP/RetryPolicy.swift",
+      "line": 8,
+      "symbol": "RetryPolicy",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/IDToken/IdTokenClaims.swift",
+      "line": 8,
+      "symbol": "IdTokenClaims",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/IDToken/IdTokenClaims.swift",
+      "line": 39,
+      "symbol": "IdTokenClaims",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/IDToken/IdTokenClaims.swift",
+      "line": 63,
+      "symbol": "IdTokenClaims",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Logging.swift",
+      "line": 9,
+      "symbol": "SchibstedAccountLogger",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/MFAType.swift",
+      "line": 37,
+      "symbol": "PreEidType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Storage/SessionStorage.swift",
+      "line": 15,
+      "symbol": "UserTokens",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Lib/Version.swift",
+      "line": 6,
+      "symbol": "sdkVersion",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Simplified Login/SimplifiedLoginManager.swift",
+      "line": 9,
+      "symbol": "SimplifiedLoginManager",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Simplified Login/SimplifiedLoginManager.swift",
+      "line": 105,
+      "symbol": "SimplifiedLoginManager",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Simplified Login/SimplifiedLoginUIVersion.swift",
+      "line": 8,
+      "symbol": "SimplifiedLoginUIVersion",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Tracking/TrackingEventsHandler.swift",
+      "line": 8,
+      "symbol": "TrackingEventsHandler",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Tracking/TrackingEventsHandler.swift",
+      "line": 27,
+      "symbol": "TrackingEvent",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/User/User.swift",
+      "line": 8,
+      "symbol": "UserDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/User/User.swift",
+      "line": 12,
+      "symbol": "UserProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/schibsted/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Util/MulticastDelegate.swift",
+      "line": 8,
+      "symbol": "MulticastDelegate",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/travis/build/schibsted/account-sdk-ios-web"
+}

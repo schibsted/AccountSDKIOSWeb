@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Client Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Client" class="dashAnchor"></a>
+    <a title="Client Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">AccountSDKIOSWeb 3.4.6 Docs</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">AccountSDKIOSWeb Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        Client Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@AccountSDKIOSWeb@objc(cs)ASWebAuthSessionContextProvider">ASWebAuthSessionContextProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthenticatedURLSession.html">AuthenticatedURLSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Client.html">Client</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/MFAType.html">MFAType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/SessionStorageConfig.html">SessionStorageConfig</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Client</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Client</span> <span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                </div>
+              </div>
+            <p>Represents a client registered with Schibsted account.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16AccountSDKIOSWeb6ClientC13configuration19appIdentifierPrefix7tracker04httpC0AcA0C13ConfigurationV_SSSgAA21TrackingEventsHandler_pSgAA10HTTPClient_pSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(configuration:appIdentifierPrefix:tracker:httpClient:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16AccountSDKIOSWeb6ClientC13configuration19appIdentifierPrefix7tracker04httpC0AcA0C13ConfigurationV_SSSgAA21TrackingEventsHandler_pSgAA10HTTPClient_pSgtcfc">init(configuration:<wbr>appIdentifierPrefix:<wbr>tracker:<wbr>httpClient:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes the Client with given configuration</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="kt">ClientConfiguration</span><span class="p">,</span>
+                        <span class="nv">appIdentifierPrefix</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                        <span class="nv">tracker</span><span class="p">:</span> <span class="kt">TrackingEventsHandler</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                        <span class="nv">httpClient</span><span class="p">:</span> <span class="kt">HTTPClient</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>configuration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Client configuration object</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>appIdentifierPrefix</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Optional AppIdentifierPrefix (Apple team ID). When provided, SDK switches to shared keychain and Simplified Login feature can be used</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tracker</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The tracking event implementation that will be called at various spots</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>httpClient</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Optional custom HTTPClient</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Public"></a>
+                <a name="//apple_ref/swift/Section/Public" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Public"></a>
+                  <h3 class="section-name"><span>Public</span>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16AccountSDKIOSWeb6ClientC22resumeLastLoggedInUser10completionyyAA0H0CSgc_tF"></a>
+                    <a name="//apple_ref/swift/Method/resumeLastLoggedInUser(completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16AccountSDKIOSWeb6ClientC22resumeLastLoggedInUser10completionyyAA0H0CSgc_tF">resumeLastLoggedInUser(completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resume any previously logged-in user session.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resumeLastLoggedInUser</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Classes/User.html">User</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion handler called when the resume request is complete.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16AccountSDKIOSWeb6ClientC15getLoginSession7withMFA9loginHint16extraScopeValues10completionSo019ASWebAuthenticationF0CSgAA7MFATypeOSg_SSSgShySSGys6ResultOyAA4UserCAA0E5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/getLoginSession(withMFA:loginHint:extraScopeValues:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16AccountSDKIOSWeb6ClientC15getLoginSession7withMFA9loginHint16extraScopeValues10completionSo019ASWebAuthenticationF0CSgAA7MFATypeOSg_SSSgShySSGys6ResultOyAA4UserCAA0E5ErrorOGctF">getLoginSession(withMFA:<wbr>loginHint:<wbr>extraScopeValues:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets an authentication web session. Only one session can be started at the time.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getLoginSession</span><span class="p">(</span><span class="nv">withMFA</span><span class="p">:</span> <span class="kt"><a href="../Enums/MFAType.html">MFAType</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                            <span class="nv">loginHint</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                            <span class="nv">extraScopeValues</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[],</span>
+                            <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">LoginResultHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ASWebAuthenticationSession</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withMFA</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Optional MFA verification to prompt the user with.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loginHint</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Optional login hint string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraScopeValues</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Any additional scope values to request.
+By default <code>openid</code> and <code>offline_access</code> will always be included as scope values.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The callback that receives the login result.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16AccountSDKIOSWeb6ClientC15getLoginSession15contextProvider7withMFA9loginHint16extraScopeValues0I3SSO10completionSo019ASWebAuthenticationF0CSgSo0rS28PresentationContextProviding_p_AA7MFATypeOSgSSSgShySSGSbys6ResultOyAA4UserCAA0E5ErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/getLoginSession(contextProvider:withMFA:loginHint:extraScopeValues:withSSO:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16AccountSDKIOSWeb6ClientC15getLoginSession15contextProvider7withMFA9loginHint16extraScopeValues0I3SSO10completionSo019ASWebAuthenticationF0CSgSo0rS28PresentationContextProviding_p_AA7MFATypeOSgSSSgShySSGSbys6ResultOyAA4UserCAA0E5ErrorOGctF">getLoginSession(contextProvider:<wbr>withMFA:<wbr>loginHint:<wbr>extraScopeValues:<wbr>withSSO:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets an authentication web session. Only one session can be started at the time.</p>
+
+<p>This method must be used for devices with iOS 13 and up.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@available</span><span class="p">(</span><span class="n">iOS</span> <span class="mf">13.0</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getLoginSession</span><span class="p">(</span><span class="nv">contextProvider</span><span class="p">:</span> <span class="kt">ASWebAuthenticationPresentationContextProviding</span><span class="p">,</span>
+                            <span class="nv">withMFA</span><span class="p">:</span> <span class="kt"><a href="../Enums/MFAType.html">MFAType</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                            <span class="nv">loginHint</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                            <span class="nv">extraScopeValues</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[],</span>
+                            <span class="nv">withSSO</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                            <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">LoginResultHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ASWebAuthenticationSession</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contextProvider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Delegate to provide presentation context for the <code>ASWebAuthenticationSession</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withMFA</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Optional MFA verification to prompt the user with.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>loginHint</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Optional login hint string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraScopeValues</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Any additional scope values to request.
+By default <code>openid</code> and <code>offline_access</code> will always be included as scope values.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withSSO</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>whether cookies should be shared to enable single-sign on (defaults to true).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>callback that receives the login result.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16AccountSDKIOSWeb6ClientC28handleAuthenticationResponse3url10completiony10Foundation3URLV_ys6ResultOyAA4UserCAA10LoginErrorOGctF"></a>
+                    <a name="//apple_ref/swift/Method/handleAuthenticationResponse(url:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16AccountSDKIOSWeb6ClientC28handleAuthenticationResponse3url10completiony10Foundation3URLV_ys6ResultOyAA4UserCAA10LoginErrorOGctF">handleAuthenticationResponse(url:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Call this with the full URL received as deep link to complete the login flow.</p>
+
+<p>This needs to be used if manually starting the login flow using <code>getLoginSession</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">handleAuthenticationResponse</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">LoginResultHandler</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Full URL from received deep link upon completion of user authentication.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Callback that receives the login result.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16AccountSDKIOSWeb6ClientC11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16AccountSDKIOSWeb6ClientC11descriptionSSvp">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Client description containing clientId value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2021 Schibsted Products &amp; Technology</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
