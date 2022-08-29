@@ -260,13 +260,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/runner/work/account-sdk-ios-web/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Simplified Login/SimplifiedLoginUIVersion.swift",
-      "line": 8,
-      "symbol": "SimplifiedLoginUIVersion",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/runner/work/account-sdk-ios-web/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Tracking/TrackingEventsHandler.swift",
       "line": 8,
       "symbol": "TrackingEventsHandler",
