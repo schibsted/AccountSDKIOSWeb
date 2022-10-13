@@ -16,15 +16,8 @@
     },
     {
       "file": "/Users/runner/work/account-sdk-ios-web/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Client/Client.swift",
-      "line": 40,
+      "line": 13,
       "symbol": "ASWebAuthSessionContextProvider.presentationAnchor(for:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/runner/work/account-sdk-ios-web/account-sdk-ios-web/Sources/AccountSDKIOSWeb/Client/Client.swift",
-      "line": 108,
-      "symbol": "Client.init(configuration:appIdentifierPrefix:sessionStorageConfig:tracker:httpClient:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },

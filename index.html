@@ -59,14 +59,6 @@
               </li>
             </ul>
           </li>
-          <li class="nav-group-name">
-            <a href="Structs.html">Structures</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Structs/SessionStorageConfig.html">SessionStorageConfig</a>
-              </li>
-            </ul>
-          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -91,8 +83,6 @@
 This will help you create a client and configure the necessary data.</p>
 
 <p><strong>Note:</strong> This SDK requires your client to be registered as a <code>public_mobile_client</code> in Self Service (see <a href="https://docs.schibsted.io/schibsted-account/gettingstarted/">getting started documentation</a> for more help).</p>
-
-<p><strong>Note:</strong> If you have implemented the <a href="https://github.com/schibsted/account-sdk-ios">Old Schibsted SDK</a> in your app, and want these users to remain logged in, do not forget to add the SessionStorageConfig on instantiating your Client, <code>Client(configuration:sessionStorageConfig:httpClient:)</code>. The function <code>Client.resumeLastLoggedInUser(completion: @escaping (User?) -&gt; Void)</code> will then handle upgrading the user old SDK credentials.</p>
 <h3 id='requirements' class='heading'>Requirements</h3>
 
 <ul>
