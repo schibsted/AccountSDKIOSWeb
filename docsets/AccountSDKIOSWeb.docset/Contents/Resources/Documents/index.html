@@ -292,6 +292,14 @@ This will help you create a client and configure the necessary data.</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
+<h4 id='externalid-for-tcf' class='heading'>ExternalId for TCF</h4>
+
+<p>To support TCF consents exchange between native and WebView, we have added a new method to the SDK, which allows you to obtain an <code>externalId</code> for the consent sharing support.
+To get the <code>externalId</code>, you need to call the following method:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">externalId</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">getExternalId</span><span class="p">(</span><span class="nv">pairId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">externalParty</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">optionalSuffix</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span>
+</code></pre>
+
+<p><code>pairId</code> can be found under <code><a href="Structs/UserProfileResponse.html#/pairId">UserProfileResponse.pairId</a></code> property.</p>
 <h3 id='notes-on-using-custom-uri-schemes' class='heading'>Notes on using custom URI schemes</h3>
 
 <p>When using custom URI as redirect URI, the OS handles opening the app associated with the link instead of triggering the <code>ASWebAuthenticationSession</code> callback.
