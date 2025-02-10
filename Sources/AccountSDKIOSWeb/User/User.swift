@@ -24,6 +24,7 @@ public protocol UserProtocol {
     func oneTimeCode(clientId: String,
                      completion: @escaping HTTPResultHandler<String>)
     func fetchProfileData(completion: @escaping HTTPResultHandler<UserProfileResponse>)
+    func fetchProfileData(clientId: String, completion: @escaping HTTPResultHandler<UserProfileResponse>)
 }
 
 /// Representation of logged-in user.
@@ -135,18 +136,22 @@ public class User: UserProtocol {
 
     /// Fetch user profile data
     public func fetchProfileData(completion: @escaping HTTPResultHandler<UserProfileResponse>) {
-        client.schibstedAccountAPI.userProfile(for: self, completion: completion)
+        fetchProfileData(clientId: client.configuration.clientId, completion: completion)
+    }
+
+    public func fetchProfileData(clientId: String, completion: @escaping HTTPResultHandler<UserProfileResponse>) {
+        client.schibstedAccountAPI.userProfile(for: self, clientId: clientId, completion: completion)
     }
 }
 
 extension User {
 
-    func userContextFromToken(completion: @escaping HTTPResultHandler<UserContextFromTokenResponse>) {
-        client.schibstedAccountAPI.userContextFromToken(for: self, completion: completion)
+    func userContextFromToken(clientId: String, completion: @escaping HTTPResultHandler<UserContextFromTokenResponse>) {
+        client.schibstedAccountAPI.userContextFromToken(for: self, clientId: clientId, completion: completion)
     }
 
-    func assertionForSimplifiedLogin(completion: @escaping HTTPResultHandler<SimplifiedLoginAssertionResponse>) {
-        self.client.schibstedAccountAPI.assertionForSimplifiedLogin(for: self, completion: completion)
+    func assertionForSimplifiedLogin(clientId: String, completion: @escaping HTTPResultHandler<SimplifiedLoginAssertionResponse>) {
+        self.client.schibstedAccountAPI.assertionForSimplifiedLogin(for: self, clientId: clientId, completion: completion)
     }
 
     static func shouldLogout(tokenResponseBody: String?) -> Bool {
@@ -159,8 +164,8 @@ extension User {
         return false
     }
 
-    func refreshTokens(completion: @escaping (Result<UserTokens, RefreshTokenError>) -> Void) {
-        self.refreshHandler.refreshWithoutRetry(user: self, completion: completion)
+    func refreshTokens(clientId: String, completion: @escaping (Result<UserTokens, RefreshTokenError>) -> Void) {
+        self.refreshHandler.refreshWithoutRetry(user: self, clientId: clientId, completion: completion)
     }
 
     func makeRequest<T: Decodable>(request: URLRequest, completion: @escaping HTTPResultHandler<T>) {
@@ -183,16 +188,19 @@ extension User {
      - parameter request: request to perform with authentication using user tokens
      - parameter completion: callback that receives the HTTP response or an error in case of failure
      */
-    func withAuthentication<T: Decodable>(request: URLRequest, completion: @escaping HTTPResultHandler<T>) {
+    func withAuthentication<T: Decodable>(request: URLRequest, clientId: String, completion: @escaping HTTPResultHandler<T>) {
         makeRequest(request: request) { (requestResult: Result<T, HTTPError>) in
             switch requestResult {
             case .failure(.errorResponse(let code, let body)):
                 // 401 might indicate expired access token
                 if code == 401 {
-                    self.refreshHandler.refreshWithRetry(user: self,
-                                                         requestResult: requestResult,
-                                                         request: request,
-                                                         completion: completion)
+                    self.refreshHandler.refreshWithRetry(
+                        user: self,
+                        clientId: clientId,
+                        requestResult: requestResult,
+                        request: request,
+                        completion: completion
+                    )
                 } else {
                     completion(.failure(.errorResponse(code: code, body: body)))
                 }
@@ -243,6 +251,7 @@ extension User {
 
         func refreshWithRetry<T: Decodable>(
             user: User,
+            clientId: String,
             requestResult: Result<T, HTTPError>,
             request: URLRequest,
             completion: @escaping HTTPResultHandler<T>
@@ -257,26 +266,26 @@ extension User {
             switch isTokenRefreshing.value {
             case .notRefreshing:
                 isTokenRefreshing.modify { _ in .isRefreshing }
-                refreshAndExecute(user: user)
+                refreshAndExecute(user: user, clientId: clientId)
             case .isRefreshing:
                 break
             }
         }
 
-        func refreshWithoutRetry(user: User, completion: @escaping (Result<UserTokens, RefreshTokenError>) -> Void) {
+        func refreshWithoutRetry(user: User, clientId: String, completion: @escaping (Result<UserTokens, RefreshTokenError>) -> Void) {
             saveRefreshWithoutRetryCompletion(completion: completion) // Save work to be executed after refresh
 
             switch isTokenRefreshing.value {
             case .notRefreshing:
                 isTokenRefreshing.modify { _ in .isRefreshing }
-                refreshAndExecute(user: user)
+                refreshAndExecute(user: user, clientId: clientId)
             case .isRefreshing:
                 break
             }
         }
 
-        private func refreshAndExecute(user: User) {
-            tokenRefresher.refreshTokens(for: user) { result in
+        private func refreshAndExecute(user: User, clientId: String) {
+            tokenRefresher.refreshTokens(for: user, clientId: clientId) { result in
                 self.isTokenRefreshing.modify { _ in .notRefreshing }
                 self.executeAfterRefresh(with: result)
 
@@ -375,12 +384,12 @@ extension User {
 }
 
 protocol UserTokensRefreshing: AnyObject {
-    func refreshTokens(for user: User, completion: @escaping (Result<UserTokens, RefreshTokenError>) -> Void)
+    func refreshTokens(for user: User, clientId: String, completion: @escaping (Result<UserTokens, RefreshTokenError>) -> Void)
 }
 
 final class DefaultUserTokensRefresher: UserTokensRefreshing {
-    func refreshTokens(for user: User, completion: @escaping (Result<UserTokens, RefreshTokenError>) -> Void) {
-        user.client.refreshTokens(for: user, completion: completion)
+    func refreshTokens(for user: User, clientId: String, completion: @escaping (Result<UserTokens, RefreshTokenError>) -> Void) {
+        user.client.refreshTokens(for: user, clientId: clientId, completion: completion)
     }
 }
 

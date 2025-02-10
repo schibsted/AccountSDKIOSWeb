@@ -56,7 +56,7 @@ public final class AuthenticatedURLSession {
                 return
             }
 
-            user.refreshTokens { result in
+            user.refreshTokens(clientId: user.client.configuration.clientId) { result in
                 switch result {
                 case .success(let tokens):
                     let requestWithRefreshedTokens = authenticatedRequest(request, tokens: tokens)

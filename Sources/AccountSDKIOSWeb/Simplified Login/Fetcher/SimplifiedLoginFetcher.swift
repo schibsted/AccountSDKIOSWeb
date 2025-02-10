@@ -10,7 +10,7 @@ typealias SimplifiedLoginAssertionResult = Result<SimplifiedLoginAssertionRespon
 
 protocol SimplifiedLoginFetching {
     func fetchData(completion: @escaping (Result<SimplifiedLoginFetchedData, Error>) -> Void)
-    func fetchAssertion(completion: @escaping (Result<SimplifiedLoginAssertionResponse, Error>) -> Void)
+    func fetchAssertion(clientId: String, completion: @escaping (Result<SimplifiedLoginAssertionResponse, Error>) -> Void)
 }
 
 class SimplifiedLoginFetcher: SimplifiedLoginFetching {
@@ -20,35 +20,39 @@ class SimplifiedLoginFetcher: SimplifiedLoginFetching {
     }
 
     var retainedSharedUser: User?
-    func getLatestSharedUser() throws -> User {
+    func getLatestSharedUserSession() throws -> UserSession {
         guard let latestUserSession = client.getLatestSharedSession() else {
             throw SimplifiedLoginManager.SimplifiedLoginError.noLoggedInSessionInSharedKeychain
         }
-        let user = User(client: client, tokens: latestUserSession.userTokens)
-        return user
+        return latestUserSession
     }
 
     func fetchData(completion: @escaping (Result<SimplifiedLoginFetchedData, Error>) -> Void) {
         do {
-            let user = try getLatestSharedUser()
+            let latestUserSession = try getLatestSharedUserSession()
+            let user = User(client: client, tokens: latestUserSession.userTokens)
+            let clientId = latestUserSession.clientId
             self.retainedSharedUser = user
-            user.userContextFromToken { result in
+            user.userContextFromToken(clientId: clientId) { result in
                 switch result {
                 case .success(let userContextResponse):
-                    self.fetchProfile(user: user, userContext: userContextResponse, completion: completion)
+                    self.fetchProfile(user: user, clientId: clientId, userContext: userContextResponse, completion: completion)
                 case .failure(let error):
                     SchibstedAccountLogger.instance
                         .error("Failed to fetch userContextFromToken: \(String(describing: error))")
                     completion(.failure(error))
                 }
             }
-        } catch {completion(.failure(error))}
+        } catch {
+            completion(.failure(error))
+        }
     }
 
     func fetchProfile(user: User,
+                      clientId: String,
                       userContext: UserContextFromTokenResponse,
                       completion: @escaping (Result<SimplifiedLoginFetchedData, Error>) -> Void) {
-        user.fetchProfileData { result in
+        user.fetchProfileData(clientId: clientId) { result in
             switch result {
             case .success(let profileResponse):
                 completion(.success((userContext, profileResponse)))
@@ -59,13 +63,13 @@ class SimplifiedLoginFetcher: SimplifiedLoginFetching {
         }
     }
 
-    func fetchAssertion(completion: @escaping (SimplifiedLoginAssertionResult) -> Void) {
+    func fetchAssertion(clientId: String, completion: @escaping (SimplifiedLoginAssertionResult) -> Void) {
         guard let user = retainedSharedUser else {
             completion(.failure(SimplifiedLoginManager.SimplifiedLoginError.noLoggedInSessionInSharedKeychain))
             return
         }
 
-        user.assertionForSimplifiedLogin { result in
+        user.assertionForSimplifiedLogin(clientId: clientId) { result in
             switch result {
             case .success(let assertionResponse):
                 completion(.success(assertionResponse))

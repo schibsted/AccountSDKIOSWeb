@@ -123,7 +123,7 @@ class SchibstedAccountAPI {
         request.setValue(HTTPUtil.xWWWFormURLEncodedContentType, forHTTPHeaderField: "Content-Type")
         request.httpBody = requestBody
 
-        user.withAuthentication(request: SchibstedAccountAPI.addingSDKHeaders(to: request)) {
+        user.withAuthentication(request: SchibstedAccountAPI.addingSDKHeaders(to: request), clientId: clientId) {
             completion(self.unpackResponse($0))
         }
     }
@@ -131,24 +131,23 @@ class SchibstedAccountAPI {
     func codeExchange(for user: User, clientId: String, completion: @escaping HTTPResultHandler<CodeExchangeResponse>) {
         let request = RequestBuilder.codeExchange(clientId: clientId).asRequest(baseURL: baseURL)
 
-        user.withAuthentication(request: SchibstedAccountAPI.addingSDKHeaders(to: request)) {
+        user.withAuthentication(request: SchibstedAccountAPI.addingSDKHeaders(to: request), clientId: clientId) {
             completion(self.unpackResponse($0))
         }
     }
 
-    func userContextFromToken(for user: User, completion: @escaping HTTPResultHandler<UserContextFromTokenResponse>) {
+    func userContextFromToken(for user: User, clientId: String, completion: @escaping HTTPResultHandler<UserContextFromTokenResponse>) {
         let request = RequestBuilder.userContextFromToken.asRequest(baseURL: sessionServiceURL)
 
-        user.withAuthentication(request: SchibstedAccountAPI.addingSDKHeaders(to: request)) {
+        user.withAuthentication(request: SchibstedAccountAPI.addingSDKHeaders(to: request), clientId: clientId) {
             completion($0)
         }
     }
 
-    func assertionForSimplifiedLogin(for user: User,
-                                     completion: @escaping HTTPResultHandler<SimplifiedLoginAssertionResponse>) {
+    func assertionForSimplifiedLogin(for user: User, clientId: String, completion: @escaping HTTPResultHandler<SimplifiedLoginAssertionResponse>) {
         let request = RequestBuilder.assertionForSimplifiedLogin.asRequest(baseURL: baseURL)
 
-        user.withAuthentication(request: SchibstedAccountAPI.addingSDKHeaders(to: request)) {
+        user.withAuthentication(request: SchibstedAccountAPI.addingSDKHeaders(to: request), clientId: clientId) {
             completion(self.unpackResponse($0))
         }
     }
@@ -172,14 +171,17 @@ class SchibstedAccountAPI {
                            completion: completion)
     }
 
-    func userProfile(for user: User, completion: @escaping HTTPResultHandler<UserProfileResponse>) {
+    func userProfile(for user: User, clientId: String, completion: @escaping HTTPResultHandler<UserProfileResponse>) {
         guard let userUuid = user.uuid else {
             completion(.failure(.unexpectedError(underlying: LoginStateError.notLoggedIn)))
             return
         }
         let url = baseURL.appendingPathComponent("/api/2/user/\(userUuid)")
         let request = URLRequest(url: url)
-        user.withAuthentication(request: SchibstedAccountAPI.addingSDKHeaders(to: request)) {
+        user.withAuthentication(
+            request: SchibstedAccountAPI.addingSDKHeaders(to: request),
+            clientId: clientId
+        ) {
             completion(self.unpackResponse($0))
         }
     }

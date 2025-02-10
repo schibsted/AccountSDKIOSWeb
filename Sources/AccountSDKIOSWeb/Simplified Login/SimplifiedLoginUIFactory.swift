@@ -54,7 +54,7 @@ struct SimplifiedLoginUIFactory {
         }
 
         viewModel.onClickedContinueAsUser = {
-            assertionFetcher.fetchAssertion { result in
+            assertionFetcher.fetchAssertion(clientId: client.configuration.clientId) { result in
                 switch result {
                 case .success(let assertion):
                     DispatchQueue.main.async {
@@ -138,7 +138,7 @@ struct SimplifiedLoginUIFactory {
         }
 
         viewModel.onClickedContinueAsUser = {
-            assertionFetcher.fetchAssertion { result in
+            assertionFetcher.fetchAssertion(clientId: client.configuration.clientId) { result in
                 switch result {
                 case .success(let assertion):
                     DispatchQueue.main.async {

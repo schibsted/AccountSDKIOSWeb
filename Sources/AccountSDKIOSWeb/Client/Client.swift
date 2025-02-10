@@ -157,7 +157,7 @@ public class Client: CustomStringConvertible {
         return session
     }
 
-    func refreshTokens(for user: User, completion: @escaping (Result<UserTokens, RefreshTokenError>) -> Void) {
+    func refreshTokens(for user: User, clientId: String, completion: @escaping (Result<UserTokens, RefreshTokenError>) -> Void) {
         guard let existingRefreshToken = user.tokens?.refreshToken else {
             SchibstedAccountLogger.instance.debug("No existing refresh token, skipping token refreh")
             tracker?.error(.refreshTokenError(.noRefreshToken), in: .noScreen)
@@ -166,7 +166,7 @@ public class Client: CustomStringConvertible {
         }
 
         // try to exchange refresh token for new token
-        tokenHandler.makeTokenRequest(refreshToken: existingRefreshToken) { tokenRefreshResult in
+        tokenHandler.makeTokenRequest(clientId: clientId, refreshToken: existingRefreshToken) { tokenRefreshResult in
             switch tokenRefreshResult {
             case .success(let tokenResponse):
                 SchibstedAccountLogger.instance.debug("Successfully refreshed user tokens")

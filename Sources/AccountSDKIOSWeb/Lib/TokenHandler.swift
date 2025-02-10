@@ -122,11 +122,14 @@ internal class TokenHandler {
         }
     }
 
-    func makeTokenRequest(refreshToken: String,
-                          scope: String? = nil,
-                          completion: @escaping HTTPResultHandler<TokenResponse>) {
+    func makeTokenRequest(
+        clientId: String,
+        refreshToken: String,
+        scope: String? = nil,
+        completion: @escaping HTTPResultHandler<TokenResponse>
+    ) {
         var parameters = [
-            "client_id": configuration.clientId,
+            "client_id": clientId,
             "grant_type": "refresh_token",
             "refresh_token": refreshToken
         ]
