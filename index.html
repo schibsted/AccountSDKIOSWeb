@@ -226,7 +226,7 @@
         <section>
           <section class="section">
             
-            <h1 id='schibsted-account-ios-sdk' class='heading'>Schibsted account iOS SDK</h1>
+            <h1 id='schibsted-account-ios-sdk' class='heading'>Schibsted Account iOS SDK</h1>
 
 <p><a href="https://github.com/schibsted/account-sdk-ios-web/actions/workflows/build.yml"><img src="https://github.com/schibsted/account-sdk-ios-web/actions/workflows/build.yml/badge.svg?branch=master" alt="Build Status"></a>
 <img src="https://img.shields.io/github/v/release/schibsted/account-sdk-ios-web" alt="GitHub release (latest by date)">
@@ -247,16 +247,18 @@ This will help you create a client and configure the necessary data.</p>
 <h3 id='requirements' class='heading'>Requirements</h3>
 
 <ul>
-<li>iOS 12.0+</li>
+<li>iOS 13.0+</li>
 </ul>
 <h3 id='installation' class='heading'>Installation</h3>
 
 <p>Swift Package Manager: <code>.package(url: &quot;https://github.com/schibsted/account-sdk-ios-web&quot;)</code></p>
 <h3 id='usage' class='heading'>Usage</h3>
 <h4 id='login-user-and-fetch-profile-data' class='heading'>Login user and fetch profile data</h4>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">clientConfiguration</span> <span class="o">=</span> <span class="kt">ClientConfiguration</span><span class="p">(</span><span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">pre</span><span class="p">,</span>
-                                              <span class="nv">clientId</span><span class="p">:</span> <span class="n">clientId</span><span class="p">,</span>
-                                              <span class="nv">redirectURI</span><span class="p">:</span> <span class="n">redirectURI</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">clientConfiguration</span> <span class="o">=</span> <span class="kt">ClientConfiguration</span><span class="p">(</span>
+    <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">pre</span><span class="p">,</span>
+    <span class="nv">clientId</span><span class="p">:</span> <span class="n">clientId</span><span class="p">,</span>
+    <span class="nv">redirectURI</span><span class="p">:</span> <span class="n">redirectURI</span>
+<span class="p">)</span>
 <span class="k">let</span> <span class="nv">client</span> <span class="o">=</span> <span class="kt">Client</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="n">clientConfiguration</span><span class="p">)</span> 
 <span class="k">let</span> <span class="nv">contextProvider</span> <span class="o">=</span> <span class="kt">ASWebAuthSessionContextProvider</span><span class="p">()</span>
 <span class="k">let</span> <span class="nv">asWebAuthSession</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="nf">getLoginSession</span><span class="p">(</span><span class="nv">contextProvider</span><span class="p">:</span> <span class="n">contextProvider</span><span class="p">,</span> <span class="nv">withSSO</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
@@ -321,9 +323,11 @@ It results in the <code>ASWebAuthenticationSession</code> view not being closed 
 <span class="n">asWebAuthSession</span><span class="o">.</span><span class="nf">start</span><span class="p">()</span> <span class="c1">// this will trigger the web context asking the user to login</span>
 </code></pre></li>
 <li><p>Handle the response as an incoming URL, e.g. via your app&rsquo;s delegate <code>application(_:open:options:)</code>:</p>
-<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span>
-                 <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span>
-                 <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:]</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span>
+    <span class="kd">open</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span>
+    <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationOpenURLOptionsKey</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
     <span class="n">client</span><span class="o">.</span><span class="nf">handleAuthenticationResponse</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="k">async</span> <span class="p">{</span>
             <span class="n">asWebAuthSession</span><span class="o">.</span><span class="nf">cancel</span><span class="p">()</span> <span class="c1">// manually close the ASWebAuthenticationSession</span>
